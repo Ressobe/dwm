@@ -1,6 +1,6 @@
 Ressobe dwm build
 ============================
-![](rice-dwm.png)
+![](dwm-rice.png)
 
 
 Requirements
