@@ -20,7 +20,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "" ,"" ,""  };
+static const char *tags[] = { "", "", "", "", "", "", "" ,"" ,""  };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -28,7 +28,6 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
 };
 
@@ -37,7 +36,6 @@ static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] 
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
-
 #include "fibonacci.c"
 #include "grid.c"
 static const Layout layouts[] = {
@@ -58,8 +56,8 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} }, \
-        { ALTMOD,                       KEY,      focusnthmon,    {.i  = TAG } }, \
-        { ALTMOD|ShiftMask,             KEY,      tagnthmon,      {.i  = TAG } },
+  { ALTMOD,                       KEY,      focusnthmon,    {.i  = TAG } }, \
+  { ALTMOD|ShiftMask,             KEY,      tagnthmon,      {.i  = TAG } },
 
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
@@ -67,17 +65,30 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+//dmenu
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+//terminal
 static const char *termcmd[]  = { "alacritty", NULL };
+//script menu 
 static const char *power[] = {"r-power.sh", NULL}; 
-
+static const char *configs[] = {"r-configs.sh", NULL};
+//key bind for web browser
+static const char *browser[] = {"brave", NULL};
+//key bind for my music player
+static const char *music[] = {"music.sh", NULL};
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
+	// RUN PROGRAMS AND SCRIPTS
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
-	{ ALTMOD,                       XK_F4,       spawn,          {.v = power } },
 	{ MODKEY,             					XK_Return, spawn,          {.v = termcmd } },
+	{ ALTMOD,                       XK_F4,     spawn,          {.v = power } },
+	{ ALTMOD,                       XK_F3,     spawn,          {.v = configs } },
+	{ ALTMOD,												XK_b,			 spawn, 				 {.v = browser } },
+	{ ALTMOD,												XK_m,			 spawn, 				 {.v = music } },
+	// HIDE BAR
 	{ MODKEY,            	          XK_b,      togglebar,      {0} },
+	// WINDOW MANIPULATION
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
@@ -89,6 +100,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,             					XK_q,      killclient,     {0} },
+	// LAYOUTS	
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -96,6 +108,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,            						XK_g,      setlayout,      {.v = &layouts[5]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
+	// MONITORS AND FULLSCREEN
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,             					XK_f,      togglefullscr,  {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -104,9 +117,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	// GAPS
 	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
+	// TAGS	
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -116,6 +131,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
+	// QUIT FROM DWM
 	{ MODKEY|ShiftMask,             XK_c,      quit,           {0} },
 };
 
