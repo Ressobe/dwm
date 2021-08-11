@@ -77,8 +77,10 @@ static const char *browser[] = {"brave", NULL};
 //key bind for my music player
 static const char *music[] = {"music.sh", NULL};
 #include "movestack.c"
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
+  //START_KEYS
 	// RUN PROGRAMS AND SCRIPTS
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,             					XK_Return, spawn,          {.v = termcmd } },
@@ -133,6 +135,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	// QUIT FROM DWM
 	{ MODKEY|ShiftMask,             XK_c,      quit,           {0} },
+	//END_KEYS
 };
 
 /* button definitions */
