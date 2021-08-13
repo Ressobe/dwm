@@ -1,4 +1,3 @@
-/* See LICENSE file for copyright and license details. */
 
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
@@ -6,29 +5,17 @@ static const unsigned int gappx     = 7;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=14", "fontawesome:size=15" };
-static const char dmenufont[]       = "monospace:size=14";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#504477";
-static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-};
+static const char *fonts[]          = { "monospace:size=13", "fontawesome:size=15" };
+
+// pywal colors
+#include "/home/relow/.cache/wal/colors-wal-dwm.h"
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "" ,"" ,""  };
+static const char *tags[] = { "code", "tty", "web", "files","music"  };
 
 static const Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
+	// class      instance    title       tags mask     isfloating   monitor 
+	{ "Brave",  NULL,       NULL,       1 << 2,       0,           -1 },
 };
 
 /* layout(s) */
@@ -44,7 +31,7 @@ static const Layout layouts[] = {
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
  	{ "[@]",      spiral },
- 	{ "[\\]",      dwindle },
+ 	{ "[\\]",     dwindle },
 	{ "HHH",      grid },
 };
 
@@ -66,7 +53,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 //dmenu
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", NULL };
 //terminal
 static const char *termcmd[]  = { "alacritty", NULL };
 //script menu 
@@ -76,11 +63,12 @@ static const char *configs[] = {"r-configs.sh", NULL};
 static const char *browser[] = {"brave", NULL};
 //key bind for my music player
 static const char *music[] = {"music.sh", NULL};
+static const char *screenshot[] = {"scrot",NULL};
 #include "movestack.c"
 
+//START_KEYS
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-  //START_KEYS
 	// RUN PROGRAMS AND SCRIPTS
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,             					XK_Return, spawn,          {.v = termcmd } },
@@ -88,6 +76,7 @@ static Key keys[] = {
 	{ ALTMOD,                       XK_F3,     spawn,          {.v = configs } },
 	{ ALTMOD,												XK_b,			 spawn, 				 {.v = browser } },
 	{ ALTMOD,												XK_m,			 spawn, 				 {.v = music } },
+	{ ALTMOD,												XK_s,			 spawn, 				 {.v = screenshot } },
 	// HIDE BAR
 	{ MODKEY,            	          XK_b,      togglebar,      {0} },
 	// WINDOW MANIPULATION
@@ -129,14 +118,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
 	// QUIT FROM DWM
-	{ MODKEY|ShiftMask,             XK_c,      quit,           {0} },
-	//END_KEYS
+	{ MODKEY|ShiftMask,             XK_r,      quit,           {0} },
 };
+//END_KEY
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
