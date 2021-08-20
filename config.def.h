@@ -2,7 +2,6 @@
 //pywal colors
 #include "/home/relow/.cache/wal/colors-wal-dwm.h"
 #include "movestack.c"
-
 // appearance 
 static const unsigned int borderpx  = 2;        // border pixel of windows 
 static const unsigned int snap      = 32;       // snap pixel 
@@ -67,13 +66,14 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run","-p","run:" , NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
-static const char *power[] = {"r-power.sh", NULL}; 
-static const char *browser[] = {"brave", NULL};
-static const char *audio[] = {"pavucontrol", NULL};
-static const char *wallpaper[] = {"r-wallpaper.sh", NULL};
-
+static const char *dmenucmd[] 	= 	{ "dmenu_run","-p","run:" , NULL };
+static const char *termcmd[]  	= 	{ "alacritty", NULL };
+static const char *power[] 			= 	{"r-power.sh", NULL}; 
+static const char *browser[] 		=   {"brave", NULL};
+static const char *audio[] 			=   {"pavucontrol", NULL};
+static const char *wallpaper[]  =   {"r-wallpaper.sh", NULL};
+static const char *doc[]        =   {"r-doc.sh",NULL};
+static const char *man[]        =   {"r-man.sh",NULL};
 //START_KEYS
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -81,6 +81,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,             					XK_Return, spawn,          {.v = termcmd } },
 	{ ALTMOD,												XK_b,			 spawn, 				 {.v = browser } },
+	{ ALTMOD,												XK_F1,		 spawn, 				 {.v = doc } },
+	{ ALTMOD,												XK_F2,		 spawn, 				 {.v = man } },
 	{ ALTMOD,												XK_F3,		 spawn, 				 {.v = wallpaper } },
 	{ ALTMOD,                       XK_F4,     spawn,          {.v = power } },
 	{ ALTMOD,                       XK_F5,     spawn,          {.v = audio } },
@@ -95,24 +97,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
-	//GAPS	
-	/*
-	{ MODKEY|ControlMask,              XK_u,      incrgaps,       {.i = +1 } },
-	{ MODKEY|ControlMask|ShiftMask,    XK_u,      incrgaps,       {.i = -1 } },
-	{ MODKEY|ControlMask,              XK_i,      incrigaps,      {.i = +1 } },
-	{ MODKEY|ControlMask|ShiftMask,    XK_i,      incrigaps,      {.i = -1 } },
-	{ MODKEY|ControlMask,              XK_o,      incrogaps,      {.i = +1 } },
-	{ MODKEY|ControlMask|ShiftMask,    XK_o,      incrogaps,      {.i = -1 } },
-	{ MODKEY|ControlMask,              XK_6,      incrihgaps,     {.i = +1 } },
-	{ MODKEY|ControlMask|ShiftMask,    XK_6,      incrihgaps,     {.i = -1 } },
-	{ MODKEY|ControlMask,              XK_7,      incrivgaps,     {.i = +1 } },
-	{ MODKEY|ControlMask|ShiftMask,    XK_7,      incrivgaps,     {.i = -1 } },
-	{ MODKEY|ControlMask,              XK_8,      incrohgaps,     {.i = +1 } },
-	{ MODKEY|ControlMask|ShiftMask,    XK_8,      incrohgaps,     {.i = -1 } },
-	{ MODKEY|ControlMask,              XK_9,      incrovgaps,     {.i = +1 } },
-	{ MODKEY|ControlMask|ShiftMask,    XK_9,      incrovgaps,     {.i = -1 } },
-	{ MODKEY|ControlMask,              XK_0,      togglegaps,     {0} },
-	{ MODKEY|ControlMask|ShiftMask,    XK_0,      defaultgaps,    {0} },*/
+	//If you want key bindings for gaps check gaps.h	
 	// LAYOUTS	
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
