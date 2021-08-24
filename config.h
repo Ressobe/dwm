@@ -1,7 +1,9 @@
 
 //pywal colors
-#include "/home/relow/.cache/wal/colors-wal-dwm.h"
+//#include "/home/relow/.cache/wal/colors-wal-dwm.h"
 #include "movestack.c"
+#include "~/.config/suckless/dwm/themes/gruvbox/colors-wal-dwm.h"
+
 // appearance 
 static const unsigned int borderpx  = 2;        // border pixel of windows 
 static const unsigned int snap      = 32;       // snap pixel 
@@ -16,7 +18,7 @@ static const int topbar             = 1;        // 0 means bottom bar
 static const char *fonts[]          = { "monospace:size=13", "fontawesome:size=15" };
 
 // tagging 
-static const char *tags[] = { "code", "tty", "web", "files","music"  };
+static const char *tags[] = { "code", "gui", "web", "files","music"  };
 static const Rule rules[] = {
 	// class     		instance   		title          tags mask  	isfloating  isterminal  noswallow  monitor 
 	{ "Alacritty",	NULL,     		NULL,          0,         	0,          1,           0,        -1 },
