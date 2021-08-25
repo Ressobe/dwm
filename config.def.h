@@ -2,7 +2,6 @@
 //pywal colors
 //#include "/home/relow/.cache/wal/colors-wal-dwm.h"
 #include "movestack.c"
-#include "/home/relow/.config/suckless/dwm/themes/gruvbox/colors-wal-dwm.h"
 
 // appearance 
 static const unsigned int borderpx  = 2;        // border pixel of windows 
@@ -16,6 +15,23 @@ static const int swallowfloating    = 0;        // 1 means swallow floating wind
 static const int showbar            = 1;        // 0 means no bar 
 static const int topbar             = 1;        // 0 means bottom bar 
 static const char *fonts[]          = { "monospace:size=13", "fontawesome:size=15" };
+// colors
+static const char norm_fg[] = "#a89984";
+static const char norm_bg[] = "#282828";
+static const char norm_border[] = "#928374";
+static const char sel_fg[] = "#282828";
+static const char sel_bg[] = "#d65d0e";
+static const char sel_border[] = "#a89984";
+static const char urg_fg[] = "#a89984";
+static const char urg_bg[] = "#cc241d";
+static const char urg_border[] = "#b8bb26";
+static const char col_borderbar[]   = "#75715e";
+static const char *colors[][3]      = {
+    /*               fg           bg         border                         */
+    [SchemeNorm] = { norm_fg,     norm_bg,   norm_border }, // unfocused wins
+    [SchemeSel]  = { sel_fg,      sel_bg,    sel_border },  // the focused win
+    [SchemeUrg] =  { urg_fg,      urg_bg,    urg_border },
+};
 
 // tagging 
 static const char *tags[] = { "code", "gui", "web", "files","music"  };
