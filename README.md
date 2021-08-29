@@ -15,3 +15,5 @@ DWM is an extremely fast, small, and dynamic window manager for X.
 - [swallow](https://dwm.suckless.org/patches/swallow/)
 - [vanitygaps](https://dwm.suckless.org/patches/vanitygaps/)
 - [warp](https://dwm.suckless.org/patches/warp/)
+## Keybindings 
+All in pdf 
