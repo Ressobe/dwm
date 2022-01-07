@@ -1,0 +1,9 @@
+static const char *power[] 		  =   {"r-power.sh", NULL}; 
+static const char *browser[] 	  =   {"brave", NULL};
+static const char *audio[] 		  =   {"pavucontrol", NULL};
+static const char *wallpaper[]    =   {"r-wallpaper.sh", NULL};
+static const char *man[]          =   {"r-man.sh",NULL};
+static const char *lightup[]      =   {"sudo","xbacklight", "-inc", "5" , NULL};
+static const char *lightdown[]    =   {"sudo","xbacklight", "-dec", "5" , NULL};
+static const char *bluetooth[]    =   {"blueberry", NULL};
+static const char *killprocess[]  =   {"r-kill.sh", NULL};

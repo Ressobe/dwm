@@ -1,8 +1,9 @@
+/* #include "themes/monokai/colors-wal-dwm.h" */
 #include "/home/relow/.cache/wal/colors-wal-dwm.h"
 #include "movestack.c"
 
-static const unsigned int borderpx  = 1;        // border pixel of windows 
-static const unsigned int snap      = 32;       // snap pixel 
+static const unsigned int borderpx  = 0;        // border pixel of windows 
+static const unsigned int snap      = 30;       // snap pixel 
 static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
@@ -11,9 +12,9 @@ static int smartgaps                = 0;        /* 1 means no outer gap when the
 static const int swallowfloating    = 0;        // 1 means swallow floating windows by default 
 static const int showbar            = 1;        // 0 means no bar 
 static const int topbar             = 1;        // 0 means bottom bar 
-static const char *fonts[]          = { "hacknerdfont:size=12", "fontawesome:size=14" };
+static const char *fonts[]          = { "sourcecodepro:size=10", "fontawesome:size=12" };
 
-static const char *tags[] = { " code", " gui", " web", " music"  };
+static const char *tags[] = { "1", "2", "3", "4", "5"  };
 static const Rule rules[] = {
 	// class     		instance   		title          tags mask  	isfloating  isterminal  noswallow  monitor 
 	{ "Alacritty",	    NULL,     		NULL,          0,           0,          1,           0,        -1 },
@@ -65,17 +66,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] 	  =   {"dmenu_run","-p","run:" , NULL };
 static const char *termcmd[]  	  =   {"alacritty", NULL };
-static const char *power[] 		  =   {"r-power.sh", NULL}; 
-static const char *browser[] 	  =   {"brave", NULL};
-static const char *audio[] 		  =   {"pavucontrol", NULL};
-static const char *wallpaper[]    =   {"r-wallpaper.sh", NULL};
-static const char *man[]          =   {"r-man.sh",NULL};
-static const char *lightup[]      =   {"sudo","xbacklight", "-inc", "5" , NULL};
-static const char *lightdown[]    =   {"sudo","xbacklight", "-dec", "5" , NULL};
-static const char *volumeup[]     =   {"sudo", "amixer set Master 10%+", NULL};
-static const char *volumedown[]   =   {"sudo", "amixer set Master 10%-", NULL};
-static const char *bluetooth[]    =   {"blueberry", NULL};
-static const char *killprocess[]  =   {"r-kill.sh", NULL};
+#include "apps.h"
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -90,8 +81,6 @@ static Key keys[] = {
 	{ ALTMOD,                       XK_9,     spawn,         {.v = lightdown } },
 	{ ALTMOD,                       XK_0,     spawn,         {.v = lightup } },
 	{ ALTMOD|ShiftMask,             XK_c,     spawn,         {.v = killprocess } },
-	{ ALTMOD|ShiftMask,             XK_9,     spawn,         {.v = volumedown } },
-	{ ALTMOD|ShiftMask,             XK_0,     spawn,         {.v = volumeup } },
 	// WINDOW MANIPULATION
 	{ MODKEY,            	        XK_b,      togglebar,      {0} },
 	{ MODKEY,             			XK_q,      killclient,     {0} },
@@ -130,6 +119,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
+	TAGKEYS(                        XK_5,                      4)
 	{ MODKEY|ShiftMask,             XK_r,      quit,           {0} },
 };
 
