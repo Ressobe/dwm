@@ -1,5 +1,5 @@
-/* #include "themes/monokai/colors-wal-dwm.h" */
-#include "/home/relow/.cache/wal/colors-wal-dwm.h"
+#include "themes/dwm/colors-wal-dwm.h"
+// #include "/home/relow/.cache/wal/colors-wal-dwm.h"
 #include "movestack.c"
 
 static const unsigned int borderpx  = 0;        // border pixel of windows 
@@ -12,7 +12,7 @@ static int smartgaps                = 0;        /* 1 means no outer gap when the
 static const int swallowfloating    = 0;        // 1 means swallow floating windows by default 
 static const int showbar            = 1;        // 0 means no bar 
 static const int topbar             = 1;        // 0 means bottom bar 
-static const char *fonts[]          = { "sourcecodepro:size=10", "fontawesome:size=12" };
+static const char *fonts[]          = { "hacknerdfont:size=12", "fontawesome:size=14" };
 
 static const char *tags[] = { "1", "2", "3", "4", "5"  };
 static const Rule rules[] = {
@@ -72,9 +72,9 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,         {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,         {.v = termcmd } },
-	{ ALTMOD,                       XK_b,      spawn,    {.v = browser } },
-	{ ALTMOD,                       XK_2,      spawn,    {.v = man } },
-	{ ALTMOD,                       XK_3,      spawn,    {.v = wallpaper } },
+	{ ALTMOD,                       XK_b,      spawn,         {.v = browser } },
+	{ ALTMOD,                       XK_2,      spawn,    			{.v = man } },
+	{ ALTMOD,                       XK_3,      spawn,    			{.v = wallpaper } },
 	{ ALTMOD,                       XK_4,     spawn,         {.v = power } },
 	{ ALTMOD,                       XK_5,     spawn,         {.v = audio } },
 	{ ALTMOD,                       XK_6,     spawn,         {.v = bluetooth } },
@@ -82,33 +82,22 @@ static Key keys[] = {
 	{ ALTMOD,                       XK_0,     spawn,         {.v = lightup } },
 	{ ALTMOD|ShiftMask,             XK_c,     spawn,         {.v = killprocess } },
 	// WINDOW MANIPULATION
-	{ MODKEY,            	        XK_b,      togglebar,      {0} },
-	{ MODKEY,             			XK_q,      killclient,     {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+	{ MODKEY,            	          XK_b,      togglebar,      {0} },
+	{ MODKEY,             			    XK_q,      killclient,     {0} },
+	{ MODKEY,                       XK_h,      focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_l,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_e,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_j,      setmfact,       {.f = -0.05} },
+	{ MODKEY,                       XK_k,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,             			XK_m,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_F1,     setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,            			XK_F2,     setlayout,      {.v = &layouts[3]} },
-	{ MODKEY,            			XK_F3,     setlayout,      {.v = &layouts[4]} },
-	{ MODKEY,            			XK_F4,     setlayout,      {.v = &layouts[5]} },
-	{ MODKEY,            			XK_F5,     setlayout,      {.v = &layouts[6]} },
-	{ MODKEY,            			XK_F6,     setlayout,      {.v = &layouts[7]} },
-	{ MODKEY,            			XK_F7,     setlayout,      {.v = &layouts[8]} },
-	{ MODKEY,            			XK_F8,     setlayout,      {.v = &layouts[9]} },
-	{ MODKEY,            			XK_F9,     setlayout,      {.v = &layouts[10]}}, 
-	{ MODKEY,            			XK_F10,    setlayout,      {.v = &layouts[11]}}, 
-	{ MODKEY,            			XK_F11,    setlayout,      {.v = &layouts[12]}}, 
-	{ MODKEY,            			XK_F12,    setlayout,      {.v = &layouts[13]}}, 
+	{ MODKEY,             			    XK_m,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                    XK_space,  cyclelayout,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY,             			XK_f,      togglefullscr,  {0} },
+	{ MODKEY,             					XK_f,      togglefullscr,  {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
@@ -135,4 +124,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
